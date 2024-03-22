@@ -1,0 +1,58 @@
+# Function to add a new contact to the mini diary
+def add_contact(name, phone_number, diary):
+    # Check if name and phone_number are not empty
+    if name.strip() == "" or phone_number.strip() == "":
+        print("Name and phone number cannot be empty.")
+        return
+      
+       # Check if name or phone_number already exists in the diary
+    for contact_name, contact_phone_number in diary:
+        if name == contact_name:
+            print(f"Name '{name}' already exists in the diary.")
+            return
+        if phone_number == contact_phone_number:
+            print(f"Phone number '{phone_number}' already exists in the diary, change name and number to save contact!")
+            return
+    
+    # Add the contact to the diary
+    diary.append((name, phone_number))
+    print("Contact added successfully!")
+
+# Function to display all contacts in the mini diary
+def show_contacts(diary):
+    # Check if the diary is empty
+    if not diary:
+        print("Mini diary is empty.")
+        return
+
+    # Display all contacts
+    print("Contacts in mini diary:")
+    for index, (name, phone_number) in enumerate(diary, start=1):
+        print(f"{index}. Name: {name}, Phone Number: {phone_number}")
+
+def main():
+    # Initialize an empty list to store contacts
+    diary = []
+
+    while True:
+        print("\nMini Diary")
+        print("1. Add contact")
+        print("2. Show contacts")
+        print("3. Exit")
+
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            name = input("Enter contact name: ")
+            phone_number = input("Enter phone number: ")
+            add_contact(name, phone_number, diary)
+        elif choice == "2":
+            show_contacts(diary)
+        elif choice == "3":
+            print("Exiting Mini Diary. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()
